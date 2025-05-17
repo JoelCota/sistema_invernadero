@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Registrar Usuario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body class="bg-light">
+  <div id="header-placeholder"></div>
+  <!-- Formulario -->
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6 col-lg-5">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h3 class="card-title mb-4 text-center">Registrar Nuevo Usuario</h3>
+            <form id="registroForm" novalidate>
+              <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required />
+                <div class="invalid-feedback">Por favor ingresa un nombre.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="email" name="email" required />
+                <div class="invalid-feedback">Por favor ingresa un correo electrónico válido.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" name="password" required />
+                <div class="invalid-feedback">Por favor ingresa una contraseña.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="rol" class="form-label">Rol</label>
+                <select class="form-select" id="rol" name="rol" required>
+                  <option value="" disabled selected>Selecciona un rol</option>
+                  <option value="ADMIN">ADMIN</option>
+                  <option value="USER">USER</option>
+                </select>
+                <div class="invalid-feedback">Por favor selecciona un rol.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="numeroCelular" class="form-label">Número de Celular</label>
+                <input
+                  type="tel"
+                  class="form-control"
+                  id="numeroCelular"
+                  name="numeroCelular"
+                  pattern="[0-9]{10,15}"
+                  placeholder="Ej: 5512345678"
+                  required
+                />
+                <div class="invalid-feedback">Por favor ingresa un número de celular válido (solo números).</div>
+              </div>
+
+              <div id="error" class="mb-3"></div>
+
+              <button type="submit" class="btn btn-primary w-100">Registrar Usuario</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle CDN (incluye Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    fetch('header.html')
+      .then(res => res.text())
+      .then(data => {
+        document.getElementById('header-placeholder').innerHTML = data;
+      });
+  </script>
+  <script>
+    
+    const form = document.getElementById('registroForm');
+    const errorDiv = document.getElementById('error');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      if (!form.checkValidity()) {
+        form.classList.add('was-validated');
+        return;
+      }
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const rol = document.getElementById('rol').value;
+      const numeroCelular = document.getElementById('numeroCelular').value.trim();
+
+      try {
+        const response = await fetch('http://localhost:8080/usuarios/registro', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, password, rol, numeroCelular })
+        });
+
+        if (response.ok) {
+          errorDiv.classList.remove('text-danger');
+          errorDiv.classList.add('text-success');
+          errorDiv.textContent = '¡Usuario registrado exitosamente!';
+          form.reset();
+          form.classList.remove('was-validated');
+        } else {
+          const errorText = await response.text();
+          errorDiv.classList.remove('text-success');
+          errorDiv.classList.add('text-danger');
+          errorDiv.textContent = errorText || 'Error al registrar usuario.';
+        }
+      } catch (error) {
+        errorDiv.classList.remove('text-success');
+        errorDiv.classList.add('text-danger');
+        errorDiv.textContent = 'Error de conexión con el servidor.';
+      }
+    });
+  </script>
+</body>
+</html>

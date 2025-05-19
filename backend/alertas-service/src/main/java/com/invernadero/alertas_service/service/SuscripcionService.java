@@ -28,6 +28,10 @@ public class SuscripcionService {
         return suscripcionRepository.save(suscripcion);
     }
 
+    public List<Suscripcion> obtenerTodasLasSuscripciones() {
+        return suscripcionRepository.findAll(); // Asegúrate de tener el repository inyectado
+    }
+
     public List<Suscripcion> obtenerSuscripcionesPorSensor(Long sensorId) {
         return suscripcionRepository.findBySensorId(sensorId);
     }

@@ -15,13 +15,11 @@ public class AuthController {
     public AuthController(AuthService authService) {
         this.authService = authService;
     }
-    @GetMapping
-    public String home() {
-        return "Login is running!";
-    }
+
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
         AuthResponse response = authService.login(request);
+        System.out.println(response.toString());
         return ResponseEntity.ok(new AuthResponse(response.getToken()));
     }
 }

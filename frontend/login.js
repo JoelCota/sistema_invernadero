@@ -4,7 +4,7 @@ async function login() {
       const errorDiv = document.getElementById("error");
 
       try {
-        const response = await fetch("http://localhost:8080/login", {
+        const response = await fetch("http://localhost:8082/auth/login", {
           method: "POST",
           headers: {
             "Content-Type": "application/json"
@@ -18,7 +18,7 @@ async function login() {
           errorDiv.classList.remove("text-danger");
           errorDiv.classList.add("text-success");
           errorDiv.textContent = "¡Login exitoso!";
-          window.location.href = 'index.html';
+          window.location.href = 'sensores.html';
           // Aquí podrías redirigir: window.location.href = "/dashboard.html";
         } else {
           const errorText = await response.text();

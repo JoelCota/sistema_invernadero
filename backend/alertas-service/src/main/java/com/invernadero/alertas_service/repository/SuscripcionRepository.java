@@ -10,4 +10,5 @@ import java.util.List;
 public interface SuscripcionRepository extends JpaRepository<Suscripcion, Long> {
     List<Suscripcion> findBySensorId(Long sensorId);
     List<Suscripcion> findByUserId(Long userId);
+    List<Suscripcion> findAll();
 }

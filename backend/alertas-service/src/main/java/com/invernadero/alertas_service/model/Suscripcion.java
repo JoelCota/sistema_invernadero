@@ -9,9 +9,9 @@ public class Suscripcion {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    @Column(nullable = false)
     private Long userId;
-
+    @Column(nullable = false)
     private Long sensorId;
 
     public Suscripcion() {}

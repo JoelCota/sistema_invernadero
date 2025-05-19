@@ -1,20 +1,33 @@
 <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom">
-  <div class="container"> <!-- Agrega un contenedor para centrar el contenido -->
-    <a class="navbar-brand d-md-none" href="#"> <img src="logo.png" alt="logo" height="40px"></a> <!-- Opcional -->
+  <div class="container">
+    <a class="navbar-brand d-md-none" href="#"> <img src="logo.png" alt="logo" height="40px"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
       aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse justify-content-between" id="navbarContent">
-        <ul class="navbar-nav mx-auto mb-2 mb-md-0">
+      <ul class="navbar-nav mx-auto mb-2 mb-md-0">
         <li class="nav-item mx-2"><a class="nav-link" href="usuarios.html">Administrar Usuario</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="sensores.html">Administrar Sensores</a></li>
         <li class="nav-item mx-2"><a class="nav-link" href="reportes.html">Reportes de Datos</a></li>
       </ul>
       <div class="d-flex">
-        <button type="button" class="btn btn-outline-primary">Log Out</button>
+        <button type="button" class="btn btn-outline-primary" id="logoutBtn">Log Out</button>
       </div>
     </div>
   </div>
 </nav>
+<script>
+  // Validación automática si no hay token
+  const token = sessionStorage.getItem('token');
+  if (!token) {
+    window.location.href = 'login.html';
+  }
+      // Botón para cerrar sesión (limpia token y redirige)
+    document.getElementById('logoutBtn').addEventListener('click', () => {
+        sessionStorage.removeItem('token');
+        alert("Logout ejecutado");
+        window.location.href = 'login.html';
+    });
+</script>

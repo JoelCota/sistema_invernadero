@@ -1,4 +1,5 @@
 package com.invernadero.user_service.services.impl;// UsuarioServiceImpl.java
+import com.invernadero.user_service.dtos.AlarmaDTO;
 import com.invernadero.user_service.dtos.CrearUsuarioDTO;
 import com.invernadero.user_service.dtos.LoginDTO;
 import com.invernadero.user_service.dtos.UsuarioDTO;
@@ -35,6 +36,13 @@ public class UsuarioServiceImpl implements UsuarioService {
         Usuario guardado = usuarioRepository.save(usuario);
         System.out.println(guardado);
         return UsuarioMapper.toDTO(guardado);
+    }
+
+    @Override
+    public AlarmaDTO obtenerPorId(Long id) {
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new UsuarioNotFoundException("Usuario no encontrado con id: " + id));
+        return UsuarioMapper.toAlarmaDTO(usuario);
     }
 
     @Override

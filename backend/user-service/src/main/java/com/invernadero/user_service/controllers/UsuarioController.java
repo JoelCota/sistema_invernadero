@@ -1,5 +1,6 @@
 package com.invernadero.user_service.controllers;
 
+import com.invernadero.user_service.dtos.AlarmaDTO;
 import com.invernadero.user_service.dtos.CrearUsuarioDTO;
 import com.invernadero.user_service.dtos.LoginDTO;
 import com.invernadero.user_service.dtos.UsuarioDTO;
@@ -19,6 +20,7 @@ public class UsuarioController {
         this.usuarioService = usuarioService;
     }
 
+
     @PostMapping("/registro")
     public ResponseEntity<UsuarioDTO> registrarUsuario(@RequestBody CrearUsuarioDTO crearUsuarioDTO) {
         UsuarioDTO nuevoUsuario = usuarioService.registrarUsuario(crearUsuarioDTO);
@@ -31,7 +33,13 @@ public class UsuarioController {
         return ResponseEntity.ok(usuario);
     }
 
-    @GetMapping("/")
+    @GetMapping("/alerta/{id}")
+    public ResponseEntity<AlarmaDTO> obtenerUsuarioPorId(@PathVariable Long id) {
+        AlarmaDTO usuario = usuarioService.obtenerPorId(id);
+        return ResponseEntity.ok(usuario);
+    }
+
+    @GetMapping
     public ResponseEntity<List<UsuarioDTO>> listarUsuarios() {
         List<UsuarioDTO> usuarios = usuarioService.obtenerTodos();
         return ResponseEntity.ok(usuarios);

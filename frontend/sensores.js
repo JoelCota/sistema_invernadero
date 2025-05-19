@@ -1,4 +1,4 @@
-  document.getElementById('sensorForm').addEventListener('submit', function (e) {
+document.getElementById('sensorForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     const tipo = document.getElementById('tipoSensor').value.trim();
@@ -9,24 +9,24 @@
 
     let errores = [];
 
-    // Validación de tipo
+    // ValidaciÃ³n de tipo
     if (tipo === "") {
       errores.push("Debes seleccionar un tipo de sensor.");
     }
 
-    // Validación de ubicación
+    // ValidaciÃ³n de ubicaciÃ³n
     if (ubicacion === "") {
-      errores.push("La ubicación no puede estar vacía.");
+      errores.push("La ubicaciÃ³n no puede estar vacÃ­a.");
     }
 
-    // Validación de valores numéricos
+    // ValidaciÃ³n de valores numÃ©ricos
     const valorMinimo = parseFloat(valorMinimoStr);
     const valorMaximo = parseFloat(valorMaximoStr);
 
     if (isNaN(valorMinimo) || isNaN(valorMaximo)) {
-      errores.push("Los valores mínimo y máximo deben ser números válidos.");
+      errores.push("Los valores mÃ­nimo y mÃ¡ximo deben ser nÃºmeros vÃ¡lidos.");
     } else if (valorMinimo >= valorMaximo) {
-      errores.push("El valor mínimo debe ser menor que el valor máximo.");
+      errores.push("El valor mÃ­nimo debe ser menor que el valor mÃ¡ximo.");
     }
 
     // Mostrar errores si existen
@@ -35,7 +35,7 @@
       return;
     }
 
-    // Si todo está bien, construir el objeto
+    // Si todo estÃ¡ bien, construir el objeto
     const data = {
       tipo,
       ubicacion,
@@ -44,10 +44,10 @@
       alarmaActiva
     };
 
-    // Simulación: mostrar datos por consola
+    // SimulaciÃ³n: mostrar datos por consola
     console.log("Datos del sensor a registrar:", data);
     const token = sessionStorage.getItem('token');
-    fetch('http://localhost:8080/api/sensores', {
+    fetch('http://localhost:8083/api/sensores', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -55,11 +55,95 @@
       },
       body: JSON.stringify(data)
     }).then(response => {
-      if (response.ok) {
-        alert("Sensor registrado correctamente.");
-        document.getElementById('sensorForm').reset();
-      } else {
-        alert("Error al registrar el sensor.");
+     if (response.ok) {
+      // Mostrar mensaje de éxito
+      alert('Sensor registrado correctamente')
+      mostrarMensaje('Sensor registrado correctamente', 'success');
+      sensorForm.reset();
+      
+      // Recargar lista de sensores si existe la tabla
+      if (document.getElementById('tablaSensores')) {
+        cargarSensores();
       }
-    });
+    } else {
+      const errorData = response.text();
+      mostrarMensaje(`Error al registrar sensor: ${errorData}`, 'danger');
+    }
+  })
+}); 
+ // URL base de la API
+const API_URL = 'http://localhost:8083';
+
+// Variables globales
+let sensores = [];
+let datosHistoricos = {};
+
+// Función para inicializar la página
+document.addEventListener('DOMContentLoaded', function() {
+  // Cargar lista de sensores si existe la tabla
+  verificarToken()
+  const tablaSensores = document.getElementById('tablaSensores');
+  if (tablaSensores) {
+    cargarSensores();
+  }
+});
+
+// Función para cargar la lista de sensores registrados
+async function cargarSensores() {
+  try {
+    const response = await fetch('http://localhost:8083/api/sensores');
+    if (response.ok) {
+      sensores = await response.json();
+      mostrarSensoresEnTabla(sensores);
+    } else {
+      mostrarMensaje('Error al cargar los sensores', 'danger');
+    }
+  } catch (error) {
+    mostrarMensaje('Error de conexión con el servidor', 'danger');
+    console.error('Error:', error);
+  }
+}
+
+// Función para mostrar los sensores en la tabla
+function mostrarSensoresEnTabla(sensores) {
+  const tablaSensores = document.getElementById('tablaSensores');
+  const tbody = tablaSensores.querySelector('tbody');
+  tbody.innerHTML = '';
+  sensores.forEach(sensor => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td>${sensor.id || '-'}</td>
+      <td>${sensor.tipo}</td>
+      <td>${sensor.ubicacion}</td>
+      <td>${sensor.valorMinimo}</td>
+      <td>${sensor.valorMaximo}</td>
+      <td>${sensor.alarmaActiva ? 'Sí' : 'No'}</td>
+     
+    `;
+    tbody.appendChild(tr);
   });
+  
+}
+
+// Función general para mostrar mensajes
+function mostrarMensaje(texto, tipo) {
+  const mensajeDiv = document.getElementById('mensaje');
+  if (!mensajeDiv) return;
+  
+  mensajeDiv.textContent = texto;
+  mensajeDiv.className = `alert alert-${tipo}`;
+  mensajeDiv.classList.remove('d-none');
+  
+  // Ocultar el mensaje después de 5 segundos
+  setTimeout(() => {
+    mensajeDiv.classList.add('d-none');
+  }, 5000);
+}
+
+
+function verificarToken(){
+  const token = sessionStorage.getItem('token');
+        if (!token) {
+            window.location.href = 'login.html';
+        };
+}

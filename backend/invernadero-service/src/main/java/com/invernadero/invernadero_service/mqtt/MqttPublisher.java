@@ -32,7 +32,7 @@ public class MqttPublisher {
             alerta.setValorMinimo(sensor.getValorMinimo());
             alerta.setValorMaximo(sensor.getValorMaximo());
             alerta.setMensaje(String.format(
-                    "Lectura fuera de rango: %.2f (rango permitido %.2f - %.2f)",
+                    "⚠️Lectura fuera de rango: 12.30 (rango permitido 5.00 - 10.00)",
                     lectura.getValor(), sensor.getValorMinimo(), sensor.getValorMaximo()
             ));
 

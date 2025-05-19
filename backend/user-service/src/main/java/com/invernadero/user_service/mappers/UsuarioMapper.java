@@ -1,5 +1,6 @@
 package com.invernadero.user_service.mappers;
 
+import com.invernadero.user_service.dtos.AlarmaDTO;
 import com.invernadero.user_service.dtos.CrearUsuarioDTO;
 import com.invernadero.user_service.dtos.LoginDTO;
 import com.invernadero.user_service.dtos.UsuarioDTO;
@@ -27,6 +28,10 @@ public class UsuarioMapper {
         dto.setUserId(usuario.getId());
         dto.setEmail(usuario.getEmail());
         return dto;
+    }
+    public static AlarmaDTO toAlarmaDTO(Usuario usuario) {
+        if (usuario == null) return null;
+        return new AlarmaDTO(usuario.getEmail(), usuario.getNumeroCelular());
     }
 
     public static Usuario toEntity(CrearUsuarioDTO dto) {

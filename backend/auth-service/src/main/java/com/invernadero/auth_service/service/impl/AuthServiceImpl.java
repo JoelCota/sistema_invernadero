@@ -25,8 +25,6 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse login(AuthRequest request) {
         Usuario usuario = userServiceClient.getUsuarioPorEmail(request.getEmail());
-        System.out.println(usuario);
-        System.out.println(userServiceClient.getUsuarioPorEmail(request.getEmail()));
         if (usuario == null) {
             throw new RuntimeException("Usuario no encontrado");
         }
@@ -37,7 +35,6 @@ public class AuthServiceImpl implements AuthService {
 
         // Genera token JWT
         String token = jwtService.generateToken(usuario.getEmail(), usuario.getRole(), usuario.getUserId());
-        System.out.println(token);
         return new AuthResponse(token);
     }
 }

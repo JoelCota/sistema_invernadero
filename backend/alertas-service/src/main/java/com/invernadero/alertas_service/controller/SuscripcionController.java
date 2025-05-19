@@ -17,8 +17,8 @@ public class SuscripcionController {
         this.suscripcionService = suscripcionService;
     }
     @GetMapping
-    public String home() {
-        return "Alertas is Running";
+    public ResponseEntity<?> obtenerTodasLasAlertas() {
+        return ResponseEntity.ok(suscripcionService.obtenerTodasLasSuscripciones());
     }
 
     @PostMapping("/suscribir")

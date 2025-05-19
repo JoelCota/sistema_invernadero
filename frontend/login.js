@@ -1,10 +1,11 @@
+const AUTH_SERVICE_URL = "http://localhost:8082";
 async function login() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
       const errorDiv = document.getElementById("error");
 
       try {
-        const response = await fetch("http://localhost:8082/auth/login", {
+        const response = await fetch(`${AUTH_SERVICE_URL}/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json"

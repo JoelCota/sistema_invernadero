@@ -1,0 +1,151 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: mysql_invernadero
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      MYSQL_DATABASE: invernadero
+    ports:  
+    - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+    networks:
+      - invernadero-net
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: mosquitto
+    restart: always
+    ports:
+      - "1883:1883"
+    volumes:
+      - ./mosquitto/config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+      - ./mosquitto/log:/mosquitto/log
+    networks:
+      - invernadero-net
+
+  invernadero-service:
+    build: ./backend/invernadero-service
+    container_name: invernadero-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mysql
+      - mosquitto
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - MQTT_BROKER_URL=${MQTT_BROKER_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
+      - ALERTAS_SERVICE_URL=${ALERTAS_SERVICE_URL}
+    networks:
+      - invernadero-net
+
+  auth-service:
+    build: ./backend/auth-service
+    container_name: auth-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_MS=${JWT_EXPIRATION_MS}
+      - USER_SERVICE_URL=${USER_SERVICE_URL}
+      - SPRING_WEB_CORS_ALLOWED_ORIGIN_PATTERNS=${SPRING_WEB_CORS_ALLOWED_ORIGIN_PATTERNS}
+      - SPRING_WEB_CORS_ALLOWED_METHODS=GET,POST
+      - SPRING_WEB_CORS_ALLOWED_HEADERS=${SPRING_WEB_CORS_ALLOWED_HEADERS}
+      - SPRING_WEB_CORS_ALLOW_CREDENTIALS=${SPRING_WEB_CORS_ALLOW_CREDENTIALS}
+      - SPRING_WEB_CORS_MAX_AGE=${SPRING_WEB_CORS_MAX_AGE}
+    networks:
+      - invernadero-net
+
+  alertas-service:
+    build: ./backend/alertas-service
+    container_name: alertas-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      - mysql
+      - mosquitto
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - MQTT_BROKER_URL=${MQTT_BROKER_URL}
+      - USER_SERVICE_URL=${USER_SERVICE_URL}
+      - JWT_SECRET=${JWT_SECRET}
+      - SPRING_MAIL_HOST=${SPRING_MAIL_HOST}
+      - SPRING_MAIL_PORT=${SPRING_MAIL_PORT}
+      - SPRING_MAIL_USERNAME=${SPRING_MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${SPRING_MAIL_PASSWORD}
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH}
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE}
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_REQUIRED=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_REQUIRED}
+      - SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_TRUST=${SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_TRUST}
+      - TWILIO_ACCOUNT_SID=${TWILIO_ACCOUNT_SID}
+      - TWILIO_AUTH_TOKEN=${TWILIO_AUTH_TOKEN}
+      - TWILIO_PHONE_NUMBER=${TWILIO_PHONE_NUMBER}
+    networks:
+      - invernadero-net
+
+  usuario-service:
+    build: ./backend/user-service
+    container_name: usuario-service
+    env_file:
+      - .env
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
+    environment:
+      - SPRING_DATASOURCE_URL=${SPRING_DATASOURCE_URL}
+      - SPRING_DATASOURCE_USERNAME=${SPRING_DATASOURCE_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${SPRING_DATASOURCE_PASSWORD}
+      - JWT_SECRET=${JWT_SECRET}
+      - SPRING_WEB_CORS_ALLOWED_ORIGIN_PATTERNS=${SPRING_WEB_CORS_ALLOWED_ORIGIN_PATTERNS}
+      - SPRING_WEB_CORS_ALLOWED_METHODS=${SPRING_WEB_CORS_ALLOWED_METHODS}
+      - SPRING_WEB_CORS_ALLOWED_HEADERS=${SPRING_WEB_CORS_ALLOWED_HEADERS}
+      - SPRING_WEB_CORS_ALLOW_CREDENTIALS=${SPRING_WEB_CORS_ALLOW_CREDENTIALS}
+      - SPRING_WEB_CORS_MAX_AGE=${SPRING_WEB_CORS_MAX_AGE}
+    networks:
+      - invernadero-net
+
+  api-gateway:
+    build: ./backend/api-gateway
+    container_name: api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - invernadero-service
+      - auth-service
+      - alertas-service
+      - usuario-service
+    environment:
+      - GATEWAY_INVERNADERO_SERVICE_URI=${GATEWAY_INVERNADERO_SERVICE_URI}
+    networks:
+      - invernadero-net
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80"
+    networks:
+      - invernadero-net
+
+volumes:
+  mysql-data:
+
+networks:
+  invernadero-net:

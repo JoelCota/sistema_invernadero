@@ -22,7 +22,7 @@
   // Validación automática si no hay token
   const token = sessionStorage.getItem('token');
   if (!token) {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
   }
       // Botón para cerrar sesión (limpia token y redirige)
     document.getElementById('logoutBtn').addEventListener('click', () => {

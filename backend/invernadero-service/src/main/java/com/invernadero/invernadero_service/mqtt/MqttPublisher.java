@@ -4,9 +4,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.invernadero.invernadero_service.dto.AlertaDTO;
 import com.invernadero.invernadero_service.model.LecturaSensor;
 import com.invernadero.invernadero_service.model.Sensor;
+import jakarta.annotation.PostConstruct;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,10 +18,9 @@ public class MqttPublisher {
     @Autowired
     private ObjectMapper objectMapper;
 
-
-    public MqttPublisher() throws Exception {
-        this.mqttClient = new MqttClient("tcp://localhost:1883", MqttClient.generateClientId());
-        this.mqttClient.connect();
+    @Autowired
+    public MqttPublisher(@Value("${mqtt.broker.url}") String brokerUrl) throws Exception {
+        this.mqttClient = new MqttClient(brokerUrl, MqttClient.generateClientId());
     }
 
     public void publicarAlerta(Sensor sensor, LecturaSensor lectura) {
@@ -45,6 +46,15 @@ public class MqttPublisher {
             System.out.println("📡 Alerta publicada MQTT: " + json);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @PostConstruct
+    public void init() {
+        try {
+            this.mqttClient.connect();
+        } catch (Exception e) {
+            e.printStackTrace(); // puedes agregar logs
         }
     }
 }

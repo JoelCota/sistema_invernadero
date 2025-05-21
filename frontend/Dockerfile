@@ -1,8 +1,10 @@
 FROM nginx:alpine
 
+# Copia el index.html al directorio donde nginx sirve el contenido
+COPY index.html /usr/share/nginx/html/index.html
+
 COPY . /usr/share/nginx/html
 
-# Expone el puerto 80
 EXPOSE 80
 
 CMD ["nginx", "-g", "daemon off;"]

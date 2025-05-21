@@ -47,7 +47,7 @@ document.getElementById('sensorForm').addEventListener('submit', function (e) {
     // SimulaciÃ³n: mostrar datos por consola
     console.log("Datos del sensor a registrar:", data);
     const token = sessionStorage.getItem('token');
-    fetch('http://localhost:8083/api/sensores', {
+    fetch('http://localhost:8085/api/sensores', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ document.getElementById('sensorForm').addEventListener('submit', function (e) {
   })
 }); 
  // URL base de la API
-const API_URL = 'http://localhost:8083';
+const API_URL = 'http://localhost:8085';
 
 // Variables globales
 let sensores = [];

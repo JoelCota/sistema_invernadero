@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8083';
+const API_URL = 'http://localhost:8085';
 // Funciones para la página de reportes y estadísticas
 async function cargarSensoresParaReportes() {
   try {

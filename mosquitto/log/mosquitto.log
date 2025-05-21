@@ -211,3 +211,204 @@
 1747688035: Client alertas-service-client disconnected.
 1747688035: Client paho12624477169006 closed its connection.
 1747688041: mosquitto version 2.0.21 terminating
+1747717838: mosquitto version 2.0.21 starting
+1747717838: Config loaded from /mosquitto/config/mosquitto.conf.
+1747717838: Opening ipv4 listen socket on port 1883.
+1747717838: Opening ipv6 listen socket on port 1883.
+1747717838: mosquitto version 2.0.21 running
+1747718197: mosquitto version 2.0.21 terminating
+1747718389: mosquitto version 2.0.21 starting
+1747718389: Config loaded from /mosquitto/config/mosquitto.conf.
+1747718389: Opening ipv4 listen socket on port 1883.
+1747718389: Opening ipv6 listen socket on port 1883.
+1747718389: mosquitto version 2.0.21 running
+1747718409: New connection from 172.18.0.9:35168 on port 1883.
+1747718409: New connection from 172.18.0.8:56262 on port 1883.
+1747718410: New client connected from 172.18.0.9:35168 as paho582334138530 (p2, c1, k60).
+1747718410: New client connected from 172.18.0.8:56262 as paho582557899962 (p2, c1, k60).
+1747718413: New connection from 172.18.0.7:47986 on port 1883.
+1747718413: New client connected from 172.18.0.7:47986 as alertas-service-client (p2, c1, k60).
+1747718547: Client alertas-service-client disconnected.
+1747718547: Client paho582557899962 closed its connection.
+1747718547: Client paho582334138530 closed its connection.
+1747718553: mosquitto version 2.0.21 terminating
+1747718561: mosquitto version 2.0.21 starting
+1747718561: Config loaded from /mosquitto/config/mosquitto.conf.
+1747718561: Opening ipv4 listen socket on port 1883.
+1747718561: Opening ipv6 listen socket on port 1883.
+1747718561: mosquitto version 2.0.21 running
+1747718578: New connection from 172.18.0.7:49200 on port 1883.
+1747718579: New client connected from 172.18.0.7:49200 as paho751274318300 (p2, c1, k60).
+1747718579: New connection from 172.18.0.9:39532 on port 1883.
+1747718579: New client connected from 172.18.0.9:39532 as paho751663661473 (p2, c1, k60).
+1747718583: New connection from 172.18.0.6:35798 on port 1883.
+1747718583: New client connected from 172.18.0.6:35798 as alertas-service-client (p2, c1, k60).
+1747718955: Client alertas-service-client disconnected.
+1747718955: Client paho751663661473 closed its connection.
+1747718955: Client paho751274318300 closed its connection.
+1747718961: mosquitto version 2.0.21 terminating
+1747718976: mosquitto version 2.0.21 starting
+1747718976: Config loaded from /mosquitto/config/mosquitto.conf.
+1747718976: Opening ipv4 listen socket on port 1883.
+1747718976: Opening ipv6 listen socket on port 1883.
+1747718976: mosquitto version 2.0.21 running
+1747718999: New connection from 172.18.0.7:52604 on port 1883.
+1747718999: New connection from 172.18.0.8:34936 on port 1883.
+1747718999: New client connected from 172.18.0.7:52604 as paho1171997432464 (p2, c1, k60).
+1747718999: New client connected from 172.18.0.8:34936 as paho1172260539225 (p2, c1, k60).
+1747719002: New connection from 172.18.0.9:37502 on port 1883.
+1747719002: New client connected from 172.18.0.9:37502 as alertas-service-client (p2, c1, k60).
+1747719145: Client alertas-service-client disconnected.
+1747719145: Client paho1171997432464 closed its connection.
+1747719145: Client paho1172260539225 closed its connection.
+1747719150: mosquitto version 2.0.21 terminating
+1747719194: mosquitto version 2.0.21 starting
+1747719194: Config loaded from /mosquitto/config/mosquitto.conf.
+1747719194: Opening ipv4 listen socket on port 1883.
+1747719194: Opening ipv6 listen socket on port 1883.
+1747719194: mosquitto version 2.0.21 running
+1747719212: New connection from 172.18.0.7:40618 on port 1883.
+1747719212: New connection from 172.18.0.9:42618 on port 1883.
+1747719213: New client connected from 172.18.0.7:40618 as paho1385371746257 (p2, c1, k60).
+1747719213: New client connected from 172.18.0.9:42618 as paho1385515144436 (p2, c1, k60).
+1747719216: New connection from 172.18.0.8:44436 on port 1883.
+1747719216: New client connected from 172.18.0.8:44436 as alertas-service-client (p2, c1, k60).
+1747719325: Client alertas-service-client disconnected.
+1747719326: Client paho1385371746257 closed its connection.
+1747719326: Client paho1385515144436 closed its connection.
+1747719349: New connection from 172.18.0.2:60688 on port 1883.
+1747719349: New client connected from 172.18.0.2:60688 as paho1522119175235 (p2, c1, k60).
+1747719350: New connection from 172.18.0.9:48976 on port 1883.
+1747719350: New client connected from 172.18.0.9:48976 as paho1522826280645 (p2, c1, k60).
+1747719353: New connection from 172.18.0.5:33466 on port 1883.
+1747719353: New client connected from 172.18.0.5:33466 as alertas-service-client (p2, c1, k60).
+1747719534: Client alertas-service-client disconnected.
+1747719535: Client paho1522119175235 closed its connection.
+1747719535: Client paho1522826280645 closed its connection.
+1747719558: New connection from 172.18.0.2:54136 on port 1883.
+1747719558: New connection from 172.18.0.5:38918 on port 1883.
+1747719559: New client connected from 172.18.0.2:54136 as paho1731502651295 (p2, c1, k60).
+1747719559: New client connected from 172.18.0.5:38918 as paho1731575293210 (p2, c1, k60).
+1747719562: New connection from 172.18.0.6:48838 on port 1883.
+1747719562: New client connected from 172.18.0.6:48838 as alertas-service-client (p2, c1, k60).
+1747719687: Client alertas-service-client disconnected.
+1747719688: Client paho1731575293210 closed its connection.
+1747719688: Client paho1731502651295 closed its connection.
+1747719693: mosquitto version 2.0.21 terminating
+1747719706: mosquitto version 2.0.21 starting
+1747719706: Config loaded from /mosquitto/config/mosquitto.conf.
+1747719706: Opening ipv4 listen socket on port 1883.
+1747719706: Opening ipv6 listen socket on port 1883.
+1747719706: mosquitto version 2.0.21 running
+1747719723: New connection from 172.18.0.5:38404 on port 1883.
+1747719724: New connection from 172.18.0.6:43920 on port 1883.
+1747719724: New client connected from 172.18.0.5:38404 as paho1896684597628 (p2, c1, k60).
+1747719724: New client connected from 172.18.0.6:43920 as paho1896912611385 (p2, c1, k60).
+1747719727: New connection from 172.18.0.9:38768 on port 1883.
+1747719727: New client connected from 172.18.0.9:38768 as alertas-service-client (p2, c1, k60).
+1747729402: Client alertas-service-client disconnected.
+1747729403: Client paho1896684597628 closed its connection.
+1747729403: Client paho1896912611385 closed its connection.
+1747729408: mosquitto version 2.0.21 terminating
+1747729535: mosquitto version 2.0.21 starting
+1747729535: Config loaded from /mosquitto/config/mosquitto.conf.
+1747729535: Opening ipv4 listen socket on port 1883.
+1747729535: Opening ipv6 listen socket on port 1883.
+1747729535: mosquitto version 2.0.21 running
+1747729555: New connection from 172.18.0.8:48530 on port 1883.
+1747729555: New connection from 172.18.0.9:51754 on port 1883.
+1747729555: New client connected from 172.18.0.8:48530 as paho11661139175871 (p2, c1, k60).
+1747729555: New client connected from 172.18.0.9:51754 as paho11661143186568 (p2, c1, k60).
+1747729559: New connection from 172.18.0.6:51962 on port 1883.
+1747729559: New client connected from 172.18.0.6:51962 as alertas-service-client (p2, c1, k60).
+1747729564: Client alertas-service-client disconnected.
+1747729823: Client paho11661143186568 closed its connection.
+1747729823: Client paho11661139175871 closed its connection.
+1747729824: mosquitto version 2.0.21 terminating
+1747729845: mosquitto version 2.0.21 starting
+1747729845: Config loaded from /mosquitto/config/mosquitto.conf.
+1747729845: Opening ipv4 listen socket on port 1883.
+1747729845: Opening ipv6 listen socket on port 1883.
+1747729845: mosquitto version 2.0.21 running
+1747729866: New connection from 172.18.0.7:35752 on port 1883.
+1747729867: New connection from 172.18.0.6:42362 on port 1883.
+1747729867: New client connected from 172.18.0.7:35752 as paho11972813872121 (p2, c1, k60).
+1747729867: New client connected from 172.18.0.6:42362 as paho11972963692768 (p2, c1, k60).
+1747729871: New connection from 172.18.0.9:50970 on port 1883.
+1747729871: New client connected from 172.18.0.9:50970 as alertas-service-client (p2, c1, k60).
+1747730561: Client alertas-service-client disconnected.
+1747730561: Client paho11972963692768 closed its connection.
+1747730561: Client paho11972813872121 closed its connection.
+1747730567: mosquitto version 2.0.21 terminating
+1747730570: mosquitto version 2.0.21 starting
+1747730570: Config loaded from /mosquitto/config/mosquitto.conf.
+1747730570: Opening ipv4 listen socket on port 1883.
+1747730570: Opening ipv6 listen socket on port 1883.
+1747730570: mosquitto version 2.0.21 running
+1747730588: New connection from 172.18.0.9:56572 on port 1883.
+1747730588: New connection from 172.18.0.8:35388 on port 1883.
+1747730588: New client connected from 172.18.0.9:56572 as paho12694433318278 (p2, c1, k60).
+1747730588: New client connected from 172.18.0.8:35388 as paho12694483762528 (p2, c1, k60).
+1747730594: New connection from 172.18.0.7:45092 on port 1883.
+1747730594: New client connected from 172.18.0.7:45092 as alertas-service-client (p2, c1, k60).
+1747730657: Client alertas-service-client disconnected.
+1747730657: Client paho12694483762528 closed its connection.
+1747730657: Client paho12694433318278 closed its connection.
+1747730663: mosquitto version 2.0.21 terminating
+1747730671: mosquitto version 2.0.21 starting
+1747730671: Config loaded from /mosquitto/config/mosquitto.conf.
+1747730671: Opening ipv4 listen socket on port 1883.
+1747730671: Opening ipv6 listen socket on port 1883.
+1747730671: mosquitto version 2.0.21 running
+1747730691: New connection from 172.18.0.9:58922 on port 1883.
+1747730692: New client connected from 172.18.0.9:58922 as paho12798006068149 (p2, c1, k60).
+1747730692: New connection from 172.18.0.6:59310 on port 1883.
+1747730693: New client connected from 172.18.0.6:59310 as paho12798950543106 (p2, c1, k60).
+1747730695: New connection from 172.18.0.8:49646 on port 1883.
+1747730696: New client connected from 172.18.0.8:49646 as alertas-service-client (p2, c1, k60).
+1747730713: Client alertas-service-client disconnected.
+1747730713: Client paho12798006068149 closed its connection.
+1747730713: Client paho12798950543106 closed its connection.
+1747730719: mosquitto version 2.0.21 terminating
+1747731204: mosquitto version 2.0.21 starting
+1747731204: Config loaded from /mosquitto/config/mosquitto.conf.
+1747731204: Opening ipv4 listen socket on port 1883.
+1747731204: Opening ipv6 listen socket on port 1883.
+1747731204: mosquitto version 2.0.21 running
+1747731226: New connection from 172.18.0.6:46552 on port 1883.
+1747731226: New connection from 172.18.0.7:50370 on port 1883.
+1747731227: New client connected from 172.18.0.6:46552 as paho13332676912943 (p2, c1, k60).
+1747731227: New client connected from 172.18.0.7:50370 as paho13333000875651 (p2, c1, k60).
+1747731230: New connection from 172.18.0.9:60366 on port 1883.
+1747731230: New client connected from 172.18.0.9:60366 as alertas-service-client (p2, c1, k60).
+1747731775: Client alertas-service-client disconnected.
+1747731775: Client paho13332676912943 closed its connection.
+1747731775: Client paho13333000875651 closed its connection.
+1747731781: mosquitto version 2.0.21 terminating
+1747731919: mosquitto version 2.0.21 starting
+1747731919: Config loaded from /mosquitto/config/mosquitto.conf.
+1747731919: Opening ipv4 listen socket on port 1883.
+1747731919: Opening ipv6 listen socket on port 1883.
+1747731919: mosquitto version 2.0.21 running
+1747731941: New connection from 172.18.0.8:51470 on port 1883.
+1747731941: New connection from 172.18.0.7:50920 on port 1883.
+1747731941: New client connected from 172.18.0.8:51470 as paho14047356035004 (p2, c1, k60).
+1747731941: New client connected from 172.18.0.7:50920 as paho14047414373525 (p2, c1, k60).
+1747731945: New connection from 172.18.0.9:46462 on port 1883.
+1747731946: New client connected from 172.18.0.9:46462 as alertas-service-client (p2, c1, k60).
+1747732274: Client alertas-service-client disconnected.
+1747732274: Client paho14047356035004 closed its connection.
+1747732274: Client paho14047414373525 closed its connection.
+1747732280: mosquitto version 2.0.21 terminating
+1747751885: mosquitto version 2.0.21 starting
+1747751885: Config loaded from /mosquitto/config/mosquitto.conf.
+1747751885: Opening ipv4 listen socket on port 1883.
+1747751885: Opening ipv6 listen socket on port 1883.
+1747751885: mosquitto version 2.0.21 running
+1747752073: mosquitto version 2.0.21 terminating
+1747755449: mosquitto version 2.0.21 starting
+1747755449: Config loaded from /mosquitto/config/mosquitto.conf.
+1747755449: Opening ipv4 listen socket on port 1883.
+1747755449: Opening ipv6 listen socket on port 1883.
+1747755449: mosquitto version 2.0.21 running
+1747755489: mosquitto version 2.0.21 terminating

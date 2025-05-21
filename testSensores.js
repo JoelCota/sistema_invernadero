@@ -31,9 +31,9 @@ function enviarDatosSensor(sensorId, valor) {
 async function enviarTodosLosSensores() {
   for (let i = 0; i < sensores.length; i++) {
     // ejemplo: uso valor -10 para demostrar
-    const valor = -5; 
+    const valor = 5; 
     try {
-      const resultado = await enviarDatosSensor(sensores[i].sensorId, valor);
+      const resultado = await enviarDatosSensor(sensores[i].sensorId,String(valor));
       console.log(`Sensor ${sensores[i].sensorId} enviado con valor ${valor}:`, resultado);
     } catch (error) {
       console.error(`Error al enviar sensor ${sensores[i].sensorId}:`, error);

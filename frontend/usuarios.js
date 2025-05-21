@@ -184,12 +184,11 @@ document.addEventListener('DOMContentLoaded', () => {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ nombre, email, password, rol, numeroCelular })
         });
-
         if (response.ok) {
+          cargarUsuariosSelect()
           alert('Usuario registrado exitosamente!');
           form.reset();
           form.classList.remove('was-validated');
-          cargarUsuariosSelect()
         } else {
           mostrarMensaje('Error al registrar usuario.')
         }
